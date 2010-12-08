@@ -1,0 +1,12 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -102,6 +102,9 @@
+ 
+ 	chmod a+w $(DESTDIR)$(kobo_scoredir)
+
++$(DESTDIR)$(kobo_scoredir) : 
++	mkdir $@
++	touch $@/test
+ else
+ 
+ install-data-hook:

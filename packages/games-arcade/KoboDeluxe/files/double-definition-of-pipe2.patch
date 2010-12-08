@@ -1,0 +1,100 @@
+--- a/enemies.h
++++ b/enemies.h
+@@ -72,7 +72,7 @@
+ extern const enemy_kind cannon;
+ extern const enemy_kind pipe1;
+ extern const enemy_kind core;
+-extern const enemy_kind pipe2;
++extern const enemy_kind pipe_2;
+ extern const enemy_kind rock;
+ extern const enemy_kind ring;
+ extern const enemy_kind enemy_m1;
+@@ -160,8 +160,8 @@
+ 	void make_pipe1();
+ 	void move_pipe1();
+ 
+-	void make_pipe2();
+-	void move_pipe2();
++	void make_pipe_2();
++	void move_pipe_2();
+ 
+ 	void make_enemy1();
+ 	void move_enemy1();
+@@ -430,7 +430,7 @@
+ 
+ inline int _enemy::is_pipe()
+ {
+-	return ((_state != notuse) && ((ek == &pipe1) || (ek == &pipe2)));
++	return ((_state != notuse) && ((ek == &pipe1) || (ek == &pipe_2)));
+ }
+ 
+ 
+--- a/enemy.cpp
++++ b/enemy.cpp
+@@ -755,10 +755,10 @@
+ 
+ void _enemy::kill_core()
+ {
+-	enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
+-	enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
+-	enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
+-	enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
++	enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
++	enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
++	enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
++	enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
+ 	enemies.make(&explosion4, CS2PIXEL(x), CS2PIXEL(y));
+ 	sound.g_base_core_explo(x, y);
+ 	release();
+@@ -863,10 +863,10 @@
+ 
+ /*
+  * ===========================================================================
+- *                                pipe2
++ *                                pipe_2
+  * ===========================================================================
+  */
+-void _enemy::make_pipe2()
++void _enemy::make_pipe_2()
+ {
+ 	int x1 = (CS2PIXEL(x) & (WORLD_SIZEX - 1)) >> 4;
+ 	int y1 = (CS2PIXEL(y) & (WORLD_SIZEY - 1)) >> 4;
+@@ -898,7 +898,7 @@
+ }
+ 
+ 
+-void _enemy::move_pipe2()
++void _enemy::move_pipe_2()
+ {
+ 	if((norm < ((VIEWLIMIT >> 1) + 32)) && (count == 1))
+ 		enemies.make(&explosion,
+@@ -978,22 +978,22 @@
+ 	}
+ 	p ^= a;
+ 	if(p & U_MASK)
+-		enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
++		enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
+ 	if(p & R_MASK)
+-		enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
++		enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
+ 	if(p & D_MASK)
+-		enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
++		enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
+ 	if(p & L_MASK)
+-		enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
++		enemies.make(&pipe_2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
+ 	manage.add_score(10);
+ 	release();
+ }
+ 
+ 
+-const enemy_kind pipe2 = {
++const enemy_kind pipe_2 = {
+ 	0,
+-	&_enemy::make_pipe2,
+-	&_enemy::move_pipe2,
++	&_enemy::make_pipe_2,
++	&_enemy::move_pipe_2,
+ 	&_enemy::kill_default,
+ 	-1,
+ 	-1, 0,

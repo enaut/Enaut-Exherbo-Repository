@@ -1,0 +1,58 @@
+# Copyright 2008 Bryan Østergaard <kloeri@exherbo.org>
+# Copyright 2008, 2009, 2010 Ingmar Vanhassel <ingmar@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'subversion-1.4.6-r2.ebuild' from Gentoo, which is:
+#     Copyright 1999-2008 Gentoo Foundation.
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+export_exlib_phases src_configure src_compile src_install
+
+SUMMARY="An SDL port of xkobo, a addictive space shoot-em-up"
+DESCRIPTION="Kobo  Deluxe  is  a  3'rd person scrolling 2D shooter with a simple and
+responsive control system - which you'll need to  tackle  the  tons  of
+enemy  ships  that shoot at you, chase you, circle around you shooting,
+or even launch other ships at you, while you're trying to  destroy  the
+labyrinth shaped bases. There are 50 action packed levels with smoothly
+increasing difficulty,  and  different  combinations  of  enemies  that
+require different tactics to be dealt with successfully.
+"
+HOMEPAGE="http://olofson.net/kobodl/"
+DOWNLOADS="http://olofson.net/kobodl/download/${PNV}.tar.bz2"
+BUGS_TO="http://www.freelists.org/list/olofsonprojects"
+
+UPSTREAM_CHANGELOG="http://svn.apache.org/repos/asf/{PN}/tags/${PV}/CHANGES"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+    build+run:
+    	media-libs/SDL[>=1.2]
+	media-libs/SDL_image[>=1.2]
+       " 
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/const-fix-window.cpp.patch"
+    "${FILES}/double-definition-of-pipe2.patch"
+    "${FILES}/fix-makefile.patch"
+)
+
+KoboDeluxe_src_configure() {
+    default
+    econf
+}
+
+KoboDeluxe_src_compile() {
+    default
+    emake
+}
+
+KoboDeluxe_src_install() {
+    default
+    einstall
+    keepdir /usr/com/kobo-deluxe/scores
+}
+

@@ -1,0 +1,7 @@
+# Copyright 2010 Franz Dietrich <dietricf@informatik.uni-freiburg.de>
+# Distributed under the terms of the GNU General Public License v3
+
+require KoboDeluxe
+
+PLATFORMS="~amd64 ~arm ~ia64 ~ppc64 ~x86"
+
