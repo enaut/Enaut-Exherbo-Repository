@@ -40,5 +40,6 @@ DEFAULT_SRC_PREPARE_PATCHES=(
 
 KoboDeluxe_src_install() {
     keepdir /usr/com/kobo-deluxe/scores
+    default
 }
 
