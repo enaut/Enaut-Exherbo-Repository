@@ -21,8 +21,6 @@ HOMEPAGE="http://olofson.net/kobodl/"
 DOWNLOADS="http://olofson.net/kobodl/download/${PNV}.tar.bz2"
 BUGS_TO="http://www.freelists.org/list/olofsonprojects"
 
-UPSTREAM_CHANGELOG="http://svn.apache.org/repos/asf/{PN}/tags/${PV}/CHANGES"
-
 LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS=""
