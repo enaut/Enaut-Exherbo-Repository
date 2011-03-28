@@ -6,7 +6,7 @@
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
-export_exlib_phases src_configure src_compile src_install
+export_exlib_phases src_install
 
 SUMMARY="An SDL port of xkobo, a addictive space shoot-em-up"
 DESCRIPTION="Kobo  Deluxe  is  a  3'rd person scrolling 2D shooter with a simple and
@@ -38,19 +38,7 @@ DEFAULT_SRC_PREPARE_PATCHES=(
     "${FILES}/fix-makefile.patch"
 )
 
-KoboDeluxe_src_configure() {
-    default
-    econf
-}
-
-KoboDeluxe_src_compile() {
-    default
-    emake
-}
-
 KoboDeluxe_src_install() {
-    default
-    einstall
     keepdir /usr/com/kobo-deluxe/scores
 }
 
