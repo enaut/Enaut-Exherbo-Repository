@@ -60,11 +60,9 @@ KoboDeluxe_src_install() {
     doins icons/KDE/icons/64x64/kobodl.png
     insinto /usr/share/icons/hicolor/128x128/apps
     doins icons/KDE/icons/128x128/kobodl.png
-    #cp icons/KDE/icons/* -r /usr/share/icons/gnome/
 
 
     insinto /usr/share/applications
     doins icons/KDE/kobo-deluxe.desktop
-    #doins ${FILES}/KoboDeluxe.desktop
 }
 
