@@ -38,8 +38,33 @@ DEFAULT_SRC_PREPARE_PATCHES=(
     "${FILES}/fix-makefile.patch"
 )
 
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    "--sharedstatedir=/var/db/"
+)
+
 KoboDeluxe_src_install() {
-    keepdir /usr/com/kobo-deluxe/scores
+    keepdir /var/db/kobo-deluxe/scores
     default
+
+    tar -xf ${WORK}/icons.tar.gz
+
+    insinto /usr/share/icons/hicolor/16x16/apps
+    doins icons/KDE/icons/16x16/kobodl.png
+    insinto /usr/share/icons/hicolor/22x22/apps
+    doins icons/KDE/icons/22x22/kobodl.png
+    insinto /usr/share/icons/hicolor/32x32/apps
+    doins icons/KDE/icons/32x32/kobodl.png
+    insinto /usr/share/icons/hicolor/48x48/apps
+    doins icons/KDE/icons/48x48/kobodl.png
+    insinto /usr/share/icons/hicolor/64x64/apps
+    doins icons/KDE/icons/64x64/kobodl.png
+    insinto /usr/share/icons/hicolor/128x128/apps
+    doins icons/KDE/icons/128x128/kobodl.png
+    #cp icons/KDE/icons/* -r /usr/share/icons/gnome/
+
+
+    insinto /usr/share/applications
+    doins icons/KDE/kobo-deluxe.desktop
+    #doins ${FILES}/KoboDeluxe.desktop
 }
 
