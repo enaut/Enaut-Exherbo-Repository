@@ -1,53 +1,50 @@
 # Copyright 2008 Bryan Østergaard <kloeri@exherbo.org>
 # Copyright 2008, 2009, 2010 Ingmar Vanhassel <ingmar@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
-# Based in part upon 'subversion-1.4.6-r2.ebuild' from Gentoo, which is:
-#     Copyright 1999-2008 Gentoo Foundation.
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
-export_exlib_phases src_install
+export_exlib_phases src_install src_unpack
 
 SUMMARY="An SDL port of xkobo, a addictive space shoot-em-up"
-DESCRIPTION="Kobo  Deluxe  is  a  3'rd person scrolling 2D shooter with a simple and
-responsive control system - which you'll need to  tackle  the  tons  of
-enemy  ships  that shoot at you, chase you, circle around you shooting,
-or even launch other ships at you, while you're trying to  destroy  the
-labyrinth shaped bases. There are 50 action packed levels with smoothly
-increasing difficulty,  and  different  combinations  of  enemies  that
-require different tactics to be dealt with successfully.
-"
+DESCRIPTION="Kobo Deluxe is a 3'rd person scrolling 2D shooter with a simple and responsive control system - which you'll need to tackle the tons of enemy ships that shoot at you, chase you, circle around you shooting, or even launch other ships at you, while you're trying to destroy the labyrinth shaped bases. There are 50 action packed levels with smoothly increasing difficulty, and different combinations of enemies that require different tactics to be dealt with successfully."
 HOMEPAGE="http://olofson.net/kobodl/"
-DOWNLOADS="http://olofson.net/kobodl/download/${PNV}.tar.bz2"
-BUGS_TO="http://www.freelists.org/list/olofsonprojects"
+DOWNLOADS="${HOMEPAGE}download/${PNV}.tar.bz2"
+BUGS_TO="enaut.w@googlemail.com"
 
 LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    build:
     build+run:
     	media-libs/SDL[>=1.2]
 	media-libs/SDL_image[>=1.2]
        " 
 
 DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}/const-fix-window.cpp.patch"
-    "${FILES}/double-definition-of-pipe2.patch"
-    "${FILES}/fix-makefile.patch"
+    "${FILES}"/const-fix-window.cpp.patch
+    "${FILES}"/double-definition-of-pipe2.patch
+    "${FILES}"/fix-makefile.patch
 )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    "--sharedstatedir=/var/db/"
+    --sharedstatedir=/var/lib/games/
 )
 
-KoboDeluxe_src_install() {
-    keepdir /var/db/kobo-deluxe/scores
+KoboDeluxe_src_unpack() {
     default
 
-    tar -xf ${WORK}/icons.tar.gz
+    # Unpack the icons
+    cd "${WORK}"
+    unpack ./icons.tar.gz
+    }
 
+KoboDeluxe_src_install() {
+    # The game will add the Highscore files to this directory
+    keepdir /var/lib/games/kobo-deluxe/scores
+
+    # Copy the icons
     insinto /usr/share/icons/hicolor/16x16/apps
     doins icons/KDE/icons/16x16/kobodl.png
     insinto /usr/share/icons/hicolor/22x22/apps
@@ -61,8 +58,10 @@ KoboDeluxe_src_install() {
     insinto /usr/share/icons/hicolor/128x128/apps
     doins icons/KDE/icons/128x128/kobodl.png
 
-
+    # Copy the desktop files
     insinto /usr/share/applications
     doins icons/KDE/kobo-deluxe.desktop
+
+    default
 }
 
