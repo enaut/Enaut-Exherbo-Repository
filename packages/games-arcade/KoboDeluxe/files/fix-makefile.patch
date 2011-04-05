@@ -1,3 +1,6 @@
+Source: Franz Dietrich
+Upstream: No
+Reason: create the score directory.
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -102,6 +102,9 @@

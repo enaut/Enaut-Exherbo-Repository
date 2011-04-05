@@ -1,3 +1,6 @@
+Source: Gentoo
+Upstream: No
+Reason: Fix a compiler error
 --- a/graphics/window.cpp
 +++ b/graphics/window.cpp
 @@ -398,7 +398,7 @@
