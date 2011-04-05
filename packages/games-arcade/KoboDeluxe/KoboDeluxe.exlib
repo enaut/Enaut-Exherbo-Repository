@@ -1,5 +1,4 @@
-# Copyright 2008 Bryan Østergaard <kloeri@exherbo.org>
-# Copyright 2008, 2009, 2010 Ingmar Vanhassel <ingmar@exherbo.org>
+# Copyright 2011, Franz Dietrich <enaut.w@googlemail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
