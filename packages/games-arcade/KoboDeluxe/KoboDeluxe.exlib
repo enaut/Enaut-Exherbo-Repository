@@ -1,9 +1,9 @@
-# Copyright 2011, Franz Dietrich <enaut.w@googlemail.com>
+# Copyright 2010,2011 Franz Dietrich <enaut.w@googlemail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] game [ scores=[ /var/lib/games/kobo-deluxe/scores ] ]
 
-export_exlib_phases src_install src_unpack
+export_exlib_phases src_unpack src_install
 
 SUMMARY="An SDL port of xkobo, a addictive space shoot-em-up"
 DESCRIPTION="Kobo Deluxe is a 3'rd person scrolling 2D shooter with a simple and responsive control system - which you'll need to tackle the tons of enemy ships that shoot at you, chase you, circle around you shooting, or even launch other ships at you, while you're trying to destroy the labyrinth shaped bases. There are 50 action packed levels with smoothly increasing difficulty, and different combinations of enemies that require different tactics to be dealt with successfully."
@@ -37,25 +37,15 @@ KoboDeluxe_src_unpack() {
     # Unpack the icons
     cd "${WORK}"
     unpack ./icons.tar.gz
-    }
+}
 
 KoboDeluxe_src_install() {
     # The game will add the Highscore files to this directory
-    keepdir /var/lib/games/kobo-deluxe/scores
+    keepdir /var/lib/games/kobo-deluxe
 
     # Copy the icons
-    insinto /usr/share/icons/hicolor/16x16/apps
-    doins icons/KDE/icons/16x16/kobodl.png
-    insinto /usr/share/icons/hicolor/22x22/apps
-    doins icons/KDE/icons/22x22/kobodl.png
-    insinto /usr/share/icons/hicolor/32x32/apps
-    doins icons/KDE/icons/32x32/kobodl.png
-    insinto /usr/share/icons/hicolor/48x48/apps
-    doins icons/KDE/icons/48x48/kobodl.png
-    insinto /usr/share/icons/hicolor/64x64/apps
-    doins icons/KDE/icons/64x64/kobodl.png
-    insinto /usr/share/icons/hicolor/128x128/apps
-    doins icons/KDE/icons/128x128/kobodl.png
+    insinto /usr/share/icons/hicolor/
+    doins -r icons/KDE/icons/* 
 
     # Copy the desktop files
     insinto /usr/share/applications
