@@ -1,12 +1,16 @@
 # Copyright 2010,2011 Franz Dietrich <enaut.w@googlemail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] game [ scores=[ /var/lib/games/kobo-deluxe/scores ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] game
 
 export_exlib_phases src_unpack src_install
 
 SUMMARY="An SDL port of xkobo, a addictive space shoot-em-up"
-DESCRIPTION="Kobo Deluxe is a 3'rd person scrolling 2D shooter with a simple and responsive control system - which you'll need to tackle the tons of enemy ships that shoot at you, chase you, circle around you shooting, or even launch other ships at you, while you're trying to destroy the labyrinth shaped bases. There are 50 action packed levels with smoothly increasing difficulty, and different combinations of enemies that require different tactics to be dealt with successfully."
+DESCRIPTION="Kobo Deluxe is a 3'rd person scrolling 2D shooter with a simple and responsive control system - which
+you'll need to tackle the tons of enemy ships that shoot at you, chase you, circle around you shooting,
+or even launch other ships at you, while you're trying to destroy the labyrinth shaped bases. There
+are 50 action packed levels with smoothly increasing difficulty, and different combinations of enemies
+that require different tactics to be dealt with successfully."
 HOMEPAGE="http://olofson.net/kobodl/"
 DOWNLOADS="${HOMEPAGE}download/${PNV}.tar.bz2"
 BUGS_TO="enaut.w@googlemail.com"
@@ -35,17 +39,18 @@ KoboDeluxe_src_unpack() {
     default
 
     # Unpack the icons
-    cd "${WORK}"
+    edo cd "${WORK}"
     unpack ./icons.tar.gz
 }
 
 KoboDeluxe_src_install() {
     # The game will add the Highscore files to this directory
-    keepdir /var/lib/games/kobo-deluxe
+    keepdir /var/lib/games/kobo-deluxe/scores
+    dovarlibgames /var/lib/games/kobo-deluxe/scores
 
     # Copy the icons
     insinto /usr/share/icons/hicolor/
-    doins -r icons/KDE/icons/* 
+    doins -r icons/KDE/icons/*
 
     # Copy the desktop files
     insinto /usr/share/applications
