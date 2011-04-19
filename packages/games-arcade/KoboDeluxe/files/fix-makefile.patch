@@ -3,7 +3,7 @@ Upstream: No
 Reason: create the score directory.
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -100,8 +100,9 @@
+@@ -100,8 +100,8 @@
  
  if UNIX_SCOREDIR
  
@@ -11,7 +11,6 @@ Reason: create the score directory.
 -	chmod a+w $(DESTDIR)$(kobo_scoredir)
 +install-data-hook:
 +	-mkdir -m 774 $(DESTDIR)$(kobo_scoredir)
-+	chgrp games $(DESTDIR)$(kobo_scoredir)
  
  else
 
