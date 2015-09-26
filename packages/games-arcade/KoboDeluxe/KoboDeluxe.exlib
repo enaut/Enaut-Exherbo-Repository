@@ -21,8 +21,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        media-libs/SDL[>=1.2]
-        media-libs/SDL_image[>=1.2]
+        media-libs/SDL:0[>=1.2]
+        media-libs/SDL_image:1[>=1.2]
        "
 
 DEFAULT_SRC_PREPARE_PATCHES=(
